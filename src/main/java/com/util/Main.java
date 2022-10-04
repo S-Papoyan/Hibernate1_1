@@ -9,6 +9,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
+
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         NativeQuery<UsersEntity> nativeQuery = session.createNativeQuery("select * from users", UsersEntity.class);
@@ -17,7 +19,15 @@ public class Main {
             System.out.println(usersEntity.print());
         }
 
-        session.close();
-        HibernateUtil.close();
+//        UsersEntity user = new UsersEntity(0, "Armen", "Poghosyan", 25, "Armen@mail.ru", "123456", "12345");
+//        HibernateUtil.save(user);
+
+        UsersEntity user2 = HibernateUtil.getById(29);
+        user2.setLast_name("Kirakosyan");
+        HibernateUtil.update(user2);
+
+
     }
+
+
 }
